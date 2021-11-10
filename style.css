@@ -56,6 +56,8 @@ footer{
 .caixa-texto{
     border: none;
 
+    display: inline-block;
+
     font-family: 'Roboto';
     font-weight: 400;
     font-size: 18px;
@@ -73,7 +75,7 @@ textarea:focus, input:focus {
     width: 26px;
 }
 
-nav{ 
+ul{ 
     padding-top: 106px;
     padding-bottom: 106px;
 
@@ -93,7 +95,7 @@ nav{
 
     background-color: #DCDCDC;
 
-    display: flex;
+    display: inline-block;
     
     line-height: 20px;
 
@@ -119,6 +121,6 @@ nav{
     color: #AAAAAA;
 }
 
-span{
+strong{
     font-weight: bold;
 }
