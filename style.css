@@ -7,16 +7,25 @@ body{
     font-family: 'Roboto';
 }
 
+/* Tela de login - INICIO*/
+
 /* .area-login{
+    position: fixed;
     width: 100%;
     height: 100%;
     background-color: red;
-    z-index: -999;
-
+    z-index: 1;
+    align-items: center;
 }
-.corpo-site{
+.display-none{
     display: none;
+}
+.login-botao{
+    display: flex;
+    flex-wrap: wrap;
 } */
+
+/* Tela de login - FIM  */
 
 header{
     position: fixed;
