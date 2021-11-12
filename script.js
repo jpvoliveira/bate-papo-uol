@@ -1,11 +1,51 @@
 let input;
 let textoEnviado;
-const tiposMensagem = ['normal', 'reservada']
-const nomeUser = prompt('Digite o seu nome: ')
+// entrar na sala
+const name = prompt('Digite o seu nome: ')
+const promessaUser = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', {name})
+promessaUser.then(entradaUser)
+promessaUser.catch(reloadUser)
 
-const promessa = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages') 
-promessa.then(mensagensServidor)
+// manter user online de 5 em 5 segundos
+setInterval(manterOnline,5000)
+function manterOnline(){
+const promessaUserOn = axios.post('https://mock-api.driven.com.br/api/v4/uol/status', {name}) 
+console.log('online')
+}
 
+// function: recarregar de 3 em 3 segundos
+setInterval(recarregarMsg, 3000)
+function recarregarMsg (){
+    // carregar mensagens do servidor
+    const promessa = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages') 
+    promessa.then(mensagensServidor)
+}
+
+// enviar mensagem
+let mensagemEnviada = {}
+
+console.log(mensagemEnviada)
+function enviarClique(){
+    const promessaMsg = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', {mensagemEnviada}) 
+    promessaMsg.then(enviarMensagem())
+}
+
+// function: entrar na sala
+function entradaUser(resposta){
+    const validaUser = resposta.status
+    console.log(validaUser)
+    recarregarMsg()
+    
+}
+function reloadUser(resposta){
+    const validaUserError = resposta.status
+    console.log(validaUserError)
+    if (validaUserError !== 200){
+        location.reload()
+    }
+}
+
+// function: carregar mensagens do servidor
 function mensagensServidor(resposta){
     const tpMensagem = resposta.data
     console.log(tpMensagem.length)
@@ -29,18 +69,26 @@ function mensagensServidor(resposta){
             </li>`
             caixaMensagens.innerHTML += msgServidor
         }
+        let elementoQueQueroQueApareca = caixaMensagens.querySelector('ul li:last-child');
+        elementoQueQueroQueApareca.scrollIntoView();
     }
 }
 
-function enviarMensagem(){
-    // Ao clicar no icon o usuario vai armazenar o texto em uma variavel
+// function: enviar mensagem
+function enviarMensagem(resposta){
+    const mensagemEnviar = resposta.data
     input = document.querySelector('.caixa-texto')
-    textoEnviado = input.value
+    mensagemEnviada.text= input.value
+    mensagemEnviada.type="message"
+    mensagemEnviada.from=name
+    mensagemEnviada.to="Todos"
+    console.log(mensagemEnviada)
+    
     let caixaMensagens = document.querySelector('ul')
     const msgEnviada = `<li class="msg-status normal">
-    <span class="hora">(03:12:45)</span>
-    <span class="msg"><strong>${nomeUser+" "}</strong></span>
-    <span>${textoEnviado}</span>
+    <span class="hora">${mensagemEnviada.time}</span>
+    <span class="msg"><strong>${mensagemEnviada.from} </strong></span>
+    <span>${mensagemEnviada.text}</span>
     </li>`
     caixaMensagens.innerHTML += msgEnviada
     input.value="Escreva aqui..."
