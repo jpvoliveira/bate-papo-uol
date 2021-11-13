@@ -7,23 +7,65 @@ body{
     font-family: 'Roboto';
 }
 
-/* Tela de login - INICIO*/
+/* Tela de login - INICIO*/ 
 
-/* .area-login{
+.area-login{
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: red;
+    background-color: white;
     z-index: 1;
+    display: flex;
+    gap: 100px 0px;
+    flex-direction: column;
     align-items: center;
+   
 }
 .display-none{
     display: none;
 }
 .login-botao{
     display: flex;
-    flex-wrap: wrap;
-} */
+    flex-direction: column;
+} 
+.botao-de-login{
+    all: unset;
+    height: 45px;
+    width: 109px;
+    background-color: #E7E7E7;
+    text-align: center;
+    border-radius: 9px;
+    margin-top: 5%;
+    color: #696969;
+    margin-left: 30%;
+}
+.divimg{
+    height: 258px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.caixa-texto-user{
+    all: unset;
+    width: 261px;
+    height: 54px;
+    border: 1px solid #D7D7D7;
+    border-radius: 4px;
+    font-family:'Roboto';
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+
+}
+.caixa-texto-user::placeholder{
+    text-align: center;
+    font-family:'Roboto';
+    font-size: 18px;
+    font-weight: 400;
+}
 
 /* Tela de login - FIM  */
 
