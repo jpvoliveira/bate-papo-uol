@@ -2,6 +2,21 @@ const input = document.querySelector('.caixa-texto')
 let textoEnviado
 let name 
 let dataTempo
+
+// abrir aba da direita
+function abrirAba() {
+  const adicionaAba = document.querySelector('.aba-direita')
+  adicionaAba.classList.remove('display-none')
+  const removerAba = document.querySelector('.fundo-cinza')
+  removerAba.classList.remove('display-none')
+}
+function fecharAba() {
+  const voltarChat = document.querySelector('.fundo-cinza') 
+  voltarChat.classList.add('display-none')
+  const adicionaAba1 = document.querySelector('.aba-direita')
+  adicionaAba1.classList.add('display-none')
+}
+
 // entrar na sala
 function inicioSite() {
     name = document.querySelector('.caixa-texto-user').value

@@ -24,9 +24,32 @@
         </div>
     </div>
     <div class="container">
+        <div class="fundo-cinza display-none" onclick="fecharAba()"></div>
+        <div class="aba-direita display-none">
+            <div class="escolhaContato">
+            <p><strong>Escolha um contato para enviar mensagem:</strong></p>
+            </div>
+            <div class="opcaoContato">
+                <div class="icone-texto">
+                <ion-icon class="iconMenu" name="people" onclick="abrirAba()"></ion-icon>
+                <p class="textMenu">Todos</p>
+                </div>
+                <ion-icon class="iconCheck" name="checkmark-outline"></ion-icon>
+            </div>
+            <div class="escolhaVisibilidade">
+            <p><strong>Escolha a visibilidade:</strong></p>
+            </div>
+            <div class="opcaoContato">
+                <div class="icone-texto">
+                <ion-icon class="iconMenu" name="lock-closed" onclick="abrirAba()"></ion-icon>
+                <p class="textMenu">Público</p>
+                </div>
+                <ion-icon class="iconCheck" name="checkmark-outline"></ion-icon>
+            </div>
+        </div>
         <header> 
             <img class="logo" src="./assets/logo 1.png" alt="Logo - Bate Papo UOL">
-            <ion-icon class="icon-people" name="people"></ion-icon>
+            <ion-icon class="icon-people" name="people" onclick="abrirAba()"></ion-icon>
         </header>
         <ul>
         
