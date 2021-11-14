@@ -45,7 +45,7 @@ function enviarClique() {
   recarregarMsg()
 }
 
-// function: entrar na sala
+// function: entrar na sala (then)
 function entradaUser(resposta) {
   const removeFundo = document.querySelector('.area-login')
   removeFundo.classList.add('display-none')
@@ -56,11 +56,12 @@ function entradaUser(resposta) {
   recarregarMsg()
   setInterval(recarregarMsg, 3000)
 }
+// function: entrar na sala (catch)
 function reloadUser(resposta) {
   location.reload()
 }
 
-// manter user online de 5 em 5 segundos
+// function: manter user online de 5 em 5 segundos
 
 function manterOnline() {
   const promessaUserOn = axios.post(
@@ -81,40 +82,38 @@ function recarregarMsg() {
 }
 
 // function: carregar mensagens do servidor
+
 function mensagensServidor(resposta) {
   console.log("Lendo msg")
   const tpMensagem = resposta.data
   if (dataTempo!==tpMensagem[tpMensagem.length-1].time) {
-      console.log('FEURR')
-      let caixaMensagens = document.querySelector('ul')
-      let itens = document.querySelectorAll('li')
-      if (itens.length>0){
-          caixaMensagens.innerHTML = ''
-        }
-        let todasAsMensagens = ''
-        for (let i = 0; i < tpMensagem.length; i++) {
-            let mensagem = tpMensagem[i]
-    // se a mensagem for do tipo status, fica com a cor padrao
-    if (mensagem.type === 'status') {
-        caixaMensagens.innerHTML += `<li class="msg-status">
-        <span class="hora">(${mensagem.time})</span>
-        <span class="msg"><strong>${mensagem.from} </strong>${mensagem.text}</span>
-        </li>`
-        //   todasAsMensagens += msgServidor
+    console.log('FEURR') 
+    let caixaMensagens = document.querySelector('ul')
+    let itens = document.querySelectorAll('li')
+    if (itens.length>0){
+        caixaMensagens.innerHTML = ''
     }
+    let todasAsMensagens = ''
+    for (let i = 0; i < tpMensagem.length; i++) {
+      let mensagem = tpMensagem[i]
+    // se a mensagem for do tipo status, fica com a cor padrao
+      if (mensagem.type === 'status') {
+          caixaMensagens.innerHTML += `<li class="msg-status">
+          <span class="hora">(${mensagem.time})</span>
+          <span class="msg"><strong>${mensagem.from} </strong>${mensagem.text}</span>
+          </li>`
+      }
     // se a mensagem for do tipo message, adiciona a class normnal
-    if (mensagem.type === 'message') {
-        caixaMensagens.innerHTML += `<li class="msg-status normal">
-            <span class="hora">(${mensagem.time})</span>
-            <span class="msg"><strong>${mensagem.from} </strong>${mensagem.text}</span>
-            </li>`
-    //   todasAsMensagens += msgServidor
-}
-}
-dataTempo=tpMensagem[tpMensagem.length-1].time
-console.log("carregou")
-//   caixaMensagens.innerHTML += todasAsMensagens
-let elementoQueQueroQueApareca = caixaMensagens.querySelector('li:last-child')
-elementoQueQueroQueApareca.scrollIntoView()
-}
+      if (mensagem.type === 'message') {
+          caixaMensagens.innerHTML += `<li data-identifier="message" class="msg-status normal">
+          <span class="hora">(${mensagem.time})</span>
+          <span class="msg"><strong>${mensagem.from} </strong>${mensagem.text}</span>
+          </li>`
+      }
+    }   
+    dataTempo=tpMensagem[tpMensagem.length-1].time
+    console.log("carregou")
+    let elementoQueQueroQueApareca = caixaMensagens.querySelector('li:last-child')
+    elementoQueQueroQueApareca.scrollIntoView()
+  }
 }
